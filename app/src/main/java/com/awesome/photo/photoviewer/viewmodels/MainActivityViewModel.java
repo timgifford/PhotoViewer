@@ -4,8 +4,12 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
+import com.awesome.photo.photoviewer.presenters.Album;
+import com.awesome.photo.photoviewer.presenters.adapters.AlbumModelToAlbumAdapter;
 import com.awesome.photo.remote.api.models.AlbumsModel;
 import com.awesome.photo.remote.api.providers.JSONPlaceholderRepository;
+
+import java.util.Collection;
 
 public class MainActivityViewModel extends ViewModel {
 
@@ -16,14 +20,17 @@ public class MainActivityViewModel extends ViewModel {
         this.albumsRepository = albumsRepository;
     }
 
-    //TODO mapAlbumsModel[] to Album
-    public void retrieveAllAlbums(){
+    //TODO Convert To Live Data
+    public Collection<Album> retrieveAllAlbums(){
         AlbumsModel[] albumsModel = albumsRepository.retrieve();
+        return new AlbumModelToAlbumAdapter().adapt(albumsModel);
     }
 
-    //TODO map AlbumsModel[] to Album
-    public void retrieveAlbumFor(int id){
+    //TODO Convert To Live Data
+    public Collection<Album> retrieveAlbumFor(int id){
         AlbumsModel[] albumsModel = albumsRepository.retrieve(id);
+        return new AlbumModelToAlbumAdapter().adapt(albumsModel);
+
     }
 
 
