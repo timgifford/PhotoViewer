@@ -29,4 +29,20 @@ public class JSONPlaceholderRepository {
             return response.body();
         }
     }
+
+    public AlbumsModel[] retrieve(int id){
+        Response<AlbumsModel[]> response = null;
+        try {
+            response  = service.getAlbum(id).execute();
+        } catch (IOException e) {
+            //doNothingForNow
+            //e.printStackTrace();
+        }
+        if(response == null){
+            return null;
+        }
+        else{
+            return response.body();
+        }
+    }
 }

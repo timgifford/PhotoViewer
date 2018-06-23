@@ -27,6 +27,7 @@ public class JSONPlaceholderRepositoryTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         Mockito.when(serviceMock.getAlbums()).thenReturn(callMock);
+        Mockito.when(serviceMock.getAlbum(1)).thenReturn(callMock);
         classUnderTest = new JSONPlaceholderRepository(serviceMock);
     }
 
@@ -52,6 +53,32 @@ public class JSONPlaceholderRepositoryTest {
         Mockito.when(callMock.execute()).thenReturn(expected);
 
         AlbumsModel[] albumsModels = classUnderTest.retrieve();
+        assertNotNull(albumsModels);
+        assertEquals(expectedModel, albumsModels);
+    }
+
+    @Test
+    public void getAlbumDoesNothingWhenExceptionThrownByService() throws IOException {
+        Mockito.when(callMock.execute()).thenThrow(new IOException("Oh No, bad IO"));
+        classUnderTest.retrieve(1);
+    }
+
+    @Test
+    public void getAlbumReturnsNullWhenFailToParseResponse() throws IOException {
+        Mockito.when(callMock.execute()).thenReturn(null);
+
+        AlbumsModel[] albumsModels = classUnderTest.retrieve(1);
+        assertNull(albumsModels);
+    }
+
+    @Test
+    public void getAlbumReturnsAPIResponseBodyWhenCallSuccessful() throws IOException {
+        AlbumsModel[] expectedModel = getValidModelArray();
+        Response<AlbumsModel[]> expected = Mockito.mock(Response.class);
+        Mockito.when(expected.body()).thenReturn(expectedModel);
+        Mockito.when(callMock.execute()).thenReturn(expected);
+
+        AlbumsModel[] albumsModels = classUnderTest.retrieve(1);
         assertNotNull(albumsModels);
         assertEquals(expectedModel, albumsModels);
     }
