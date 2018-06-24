@@ -4,7 +4,7 @@ import com.awesome.photo.remote.api.models.AlbumsModel;
 
 import java.util.List;
 
-public class Album {
+public class       Album {
     private int id;
     //This is lazy I should have a Photo Object
     private List<AlbumsModel> photos;

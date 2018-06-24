@@ -30,7 +30,6 @@ public class MainActivityViewModel extends ViewModel {
     public Collection<Album> retrieveAlbumFor(int id){
         AlbumsModel[] albumsModel = albumsRepository.retrieve(id);
         return new AlbumModelToAlbumAdapter().adapt(albumsModel);
-
     }
 
 
