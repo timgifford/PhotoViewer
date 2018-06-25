@@ -2,8 +2,12 @@ package com.awesome.photo.photoviewer.viewmodels;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
+import com.awesome.photo.photoviewer.AlbumViewerActivity;
 import com.awesome.photo.photoviewer.presenters.Album;
 import com.awesome.photo.photoviewer.presenters.adapters.AlbumModelToAlbumAdapter;
 import com.awesome.photo.remote.api.models.AlbumsModel;
@@ -14,7 +18,6 @@ import java.util.Collection;
 public class MainActivityViewModel extends ViewModel {
 
     private JSONPlaceholderRepository albumsRepository;
-
 
     public MainActivityViewModel(JSONPlaceholderRepository albumsRepository) {
         this.albumsRepository = albumsRepository;
@@ -32,18 +35,12 @@ public class MainActivityViewModel extends ViewModel {
         return new AlbumModelToAlbumAdapter().adapt(albumsModel);
     }
 
-
-    public class Factory implements ViewModelProvider.Factory{
-        JSONPlaceholderRepository albumsRepository;
-        public Factory(JSONPlaceholderRepository albumsRepository){
-            this.albumsRepository = albumsRepository;
-        }
-
-        @NonNull
-        @Override
-        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            return (T)new MainActivityViewModel(albumsRepository);
-        }
+    public View.OnClickListener viewAlbumsClickListener(AppCompatActivity activity){
+        return view -> activity.startActivity(new Intent(activity.getApplicationContext(), AlbumViewerActivity.class));
+    }
+    //TODO need to update destination to PhotosViewerActivity when created
+    public View.OnClickListener viewPhotosClickListener(AppCompatActivity activity){
+        return view -> activity.startActivity(new Intent(activity.getApplicationContext(), AlbumViewerActivity.class));
     }
 
 }
