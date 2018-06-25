@@ -18,7 +18,7 @@ public class AlbumModelToAlbumAdapter {
             Arrays.asList(albumsModels).stream().forEach(x -> {
                 if(albumMap.get(x.getAlbumId())==null){
                     List<AlbumsModel> albumsModelList = new ArrayList<AlbumsModel>();
-                    albumMap.put(x.getAlbumId(), new Album(x.getId(), albumsModelList));
+                    albumMap.put(x.getAlbumId(), new Album(x.getAlbumId(), albumsModelList));
                 }
                 albumMap.get(x.getAlbumId()).getPhotos().add(x);
             });
