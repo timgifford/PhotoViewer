@@ -10,14 +10,16 @@ import android.widget.TextView;
 import com.awesome.photo.photoviewer.R;
 import com.awesome.photo.photoviewer.presenters.Album;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class AlbumViewerRecyclerViewAdapter extends RecyclerView.Adapter {
 
-    List<Album> albums;
+    ArrayList<Album> list = new ArrayList<>();
 
-    public AlbumViewerRecyclerViewAdapter(List<Album> albums) {
-        this.albums = albums;
+    public AlbumViewerRecyclerViewAdapter(Collection<Album> albums) {
+        list.addAll(albums);
     }
 
     @NonNull
@@ -31,7 +33,7 @@ public class AlbumViewerRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        Album current = albums.get(i);
+        Album current = list.get(i);
 
         ((AlbumViewerRecyclerViewAdapter.AlbumViewHolder) viewHolder).getAlbumTitleTextView().setText("Album " + current.getId());
     }

@@ -1,9 +1,13 @@
 package com.awesome.photo.remote.api.providers;
 
+import android.arch.lifecycle.MutableLiveData;
+
+import com.awesome.photo.photoviewer.presenters.Album;
 import com.awesome.photo.remote.api.models.AlbumsModel;
 import retrofit2.Response;
 
 import java.io.IOException;
+import java.util.Collection;
 
 public class JSONPlaceholderRepository {
 
@@ -14,35 +18,11 @@ public class JSONPlaceholderRepository {
         this.service = service;
     }
 
-    public AlbumsModel[] retrieve(){
-        Response<AlbumsModel[]> response = null;
-        try {
-          response  = service.getAlbums().execute();
-        } catch (IOException e) {
-            //doNothingForNow
-            //e.printStackTrace();
-        }
-        if(response == null){
-            return null;
-        }
-        else{
-            return response.body();
-        }
+    public void retrieve(MutableLiveData<AlbumsModel[]> albumsLiveData){
+        service.getAlbums().enqueue(new JSONPlaceholderServiceCallback(albumsLiveData));
     }
 
-    public AlbumsModel[] retrieve(int id){
-        Response<AlbumsModel[]> response = null;
-        try {
-            response  = service.getAlbum(id).execute();
-        } catch (IOException e) {
-            //doNothingForNow
-            //e.printStackTrace();
-        }
-        if(response == null){
-            return null;
-        }
-        else{
-            return response.body();
-        }
+    public void retrieve(int id, MutableLiveData<AlbumsModel[]> albumsLiveData){
+        service.getAlbum(id).enqueue(new JSONPlaceholderServiceCallback(albumsLiveData));
     }
 }

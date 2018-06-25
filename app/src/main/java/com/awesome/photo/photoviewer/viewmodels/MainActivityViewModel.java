@@ -1,9 +1,7 @@
 package com.awesome.photo.photoviewer.viewmodels;
 
 import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -21,18 +19,6 @@ public class MainActivityViewModel extends ViewModel {
 
     public MainActivityViewModel(JSONPlaceholderRepository albumsRepository) {
         this.albumsRepository = albumsRepository;
-    }
-
-    //TODO Convert To Live Data
-    public Collection<Album> retrieveAllAlbums(){
-        AlbumsModel[] albumsModel = albumsRepository.retrieve();
-        return new AlbumModelToAlbumAdapter().adapt(albumsModel);
-    }
-
-    //TODO Convert To Live Data
-    public Collection<Album> retrieveAlbumFor(int id){
-        AlbumsModel[] albumsModel = albumsRepository.retrieve(id);
-        return new AlbumModelToAlbumAdapter().adapt(albumsModel);
     }
 
     public View.OnClickListener viewAlbumsClickListener(AppCompatActivity activity){

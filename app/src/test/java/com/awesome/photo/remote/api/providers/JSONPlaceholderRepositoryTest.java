@@ -34,14 +34,14 @@ public class JSONPlaceholderRepositoryTest {
     @Test
     public void retrieveDoesNothingWhenExceptionThrownByService() throws IOException {
         Mockito.when(callMock.execute()).thenThrow(new IOException("Oh No, bad IO"));
-        classUnderTest.retrieve();
+        classUnderTest.retrieve(albumsLiveData);
     }
 
     @Test
     public void retrieveReturnsNullWhenFailToParseResponse() throws IOException {
         Mockito.when(callMock.execute()).thenReturn(null);
 
-        AlbumsModel[] albumsModels = classUnderTest.retrieve();
+        AlbumsModel[] albumsModels = classUnderTest.retrieve(albumsLiveData);
         assertNull(albumsModels);
     }
 
@@ -52,7 +52,7 @@ public class JSONPlaceholderRepositoryTest {
         Mockito.when(expected.body()).thenReturn(expectedModel);
         Mockito.when(callMock.execute()).thenReturn(expected);
 
-        AlbumsModel[] albumsModels = classUnderTest.retrieve();
+        AlbumsModel[] albumsModels = classUnderTest.retrieve(albumsLiveData);
         assertNotNull(albumsModels);
         assertEquals(expectedModel, albumsModels);
     }
