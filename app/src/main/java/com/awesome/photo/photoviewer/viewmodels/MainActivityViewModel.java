@@ -6,12 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.awesome.photo.photoviewer.AlbumViewerActivity;
-import com.awesome.photo.photoviewer.presenters.Album;
-import com.awesome.photo.photoviewer.presenters.adapters.AlbumModelToAlbumAdapter;
-import com.awesome.photo.remote.api.models.AlbumsModel;
 import com.awesome.photo.remote.api.providers.JSONPlaceholderRepository;
 
-import java.util.Collection;
 
 public class MainActivityViewModel extends ViewModel {
 

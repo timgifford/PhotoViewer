@@ -12,12 +12,17 @@ import com.awesome.photo.remote.api.providers.JSONPlaceholderRepository;
 
 import java.util.Collection;
 
-public class AlbumsViewerViewModel extends ViewModel{
+public class AlbumsViewerViewModel extends ViewModel {
 
     public MutableLiveData<AlbumsModel[]> albumsLiveData = new MutableLiveData<>();
+    private JSONPlaceholderRepository albumsRepository;
+
+    public AlbumsViewerViewModel(JSONPlaceholderRepository albumsRepository) {
+        this.albumsRepository = albumsRepository;
+    }
 
     public void getAlbums() {
-        new JSONPlaceholderRepository(new JSONPlaceHolderServiceBuilder().build()).retrieve(albumsLiveData);
+        albumsRepository.retrieve();
 
     }
 }

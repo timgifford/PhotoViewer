@@ -13,7 +13,6 @@ public class JSONPlaceholderServiceCallback implements Callback<AlbumsModel[]> {
     private MutableLiveData<AlbumsModel[]> albumsModelMutableLiveData;
 
     public JSONPlaceholderServiceCallback(MutableLiveData<AlbumsModel[]> albumsModelMutableLiveData){
-
         this.albumsModelMutableLiveData = albumsModelMutableLiveData;
     }
 
