@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.awesome.photo.photoviewer.databinding.ActivityAlbumViewerBinding;
+import com.awesome.photo.photoviewer.databinding.ActivityAlbumsListBinding;
 import com.awesome.photo.photoviewer.presenters.adapters.AlbumModelToAlbumAdapter;
 import com.awesome.photo.photoviewer.presenters.adapters.AlbumViewerRecyclerViewAdapter;
 import com.awesome.photo.photoviewer.viewmodels.AlbumsViewerViewModel;
@@ -19,23 +19,23 @@ import com.awesome.photo.remote.api.providers.JSONPlaceHolderServiceBuilder;
 import com.awesome.photo.remote.api.providers.JSONPlaceholderRepository;
 import com.awesome.photo.remote.api.providers.JSONPlaceholderServiceCallback;
 
-public class AlbumViewerActivity extends AppCompatActivity {
+public class AlbumsListActivity extends AppCompatActivity {
 
     private AlbumsViewerViewModel albumsViewerViewModel;
     public MutableLiveData<AlbumsModel[]> albumsModelLiveData = new MutableLiveData<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        ActivityAlbumViewerBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_album_viewer);
+        ActivityAlbumsListBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_albums_list);
         albumsViewerViewModel = ViewModelProviders.of(this, new AlbumsViewerViewModelFactory(new JSONPlaceholderRepository(new JSONPlaceHolderServiceBuilder().build(), new JSONPlaceholderServiceCallback(albumsModelLiveData)))).get(AlbumsViewerViewModel.class);
         binding.albumViewerRv.setLayoutManager(new LinearLayoutManager(this));
 
-        observeAlbumsEndpoint(binding);
+        observeAlbumsLiveData(binding);
         albumsViewerViewModel.getAlbums();
         super.onCreate(savedInstanceState);
     }
 
-    private void observeAlbumsEndpoint(ActivityAlbumViewerBinding activityAlbumViewerBinding) {
+    private void observeAlbumsLiveData(ActivityAlbumsListBinding activityAlbumViewerBinding) {
         albumsModelLiveData.observe(this, new Observer<AlbumsModel[]>() {
             @Override
             public void onChanged(@Nullable AlbumsModel[] albumsModels) {
