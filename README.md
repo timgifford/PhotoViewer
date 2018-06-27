@@ -8,3 +8,7 @@ This totally amazing app is super simple to get going
 - Open the project in Android Studio
 - Sync the project via Gradle sync
 - Run the App on your favorite device or device emulator with SDK 25 or greater
+
+# Ooo La La the Good Stuff
+
+![Alt Text](http://www.giphy.com/gifs/37tughYDlu6e7OtIIh)
