@@ -16,7 +16,7 @@ public class AlbumsModelTest {
 
     @Before
     public void setUp() {
-        initValidAlbumsModel();
+        classUnderTest = createInitializedAlbumsModel();
     }
 
     private AlbumsModel createInitializedAlbumsModel(){
@@ -29,14 +29,11 @@ public class AlbumsModelTest {
         return new AlbumsModel(albumId, id, title, url, thumbnailUrl);
     }
 
-
-    private void initValidAlbumsModel() {
-        classUnderTest = createInitializedAlbumsModel();
-    }
+    // TG: Remvoed initValidAlbumsModel since it was only called by setup?
 
     @Test
     public void getAlbumId() {
-        classUnderTest = createInitializedAlbumsModel();
+//        classUnderTest = createInitializedAlbumsModel();
         assertEquals(albumId, classUnderTest.getAlbumId());
     }
 
@@ -47,6 +44,8 @@ public class AlbumsModelTest {
         assertEquals(expctedAlbumId, classUnderTest.getAlbumId());
     }
 
+    // TG: I don't test get/sets since they tend to be covered by
+    // other tests and they don't have any logic.
     @Test
     public void getId() {
         assertEquals(id, classUnderTest.getId());

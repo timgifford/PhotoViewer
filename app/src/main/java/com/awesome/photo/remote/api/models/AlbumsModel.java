@@ -90,6 +90,8 @@ public class AlbumsModel implements Serializable
 
     @Override
     public String toString() {
+        // TG: I'd prefer String.format("albumId: %s id: %s", albumId, id);
+        // Neither one is really easier to read...Both are equally bad.
         return new StringBuilder().append("albumId: "+ albumId).append(" id: "+ id).append(" title: "+ title).append(" url: "+ url).append(" thumbnailUrl: "+ thumbnailUrl).toString();
     }
 }

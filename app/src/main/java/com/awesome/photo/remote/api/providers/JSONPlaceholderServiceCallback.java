@@ -23,6 +23,7 @@ public class JSONPlaceholderServiceCallback implements Callback<AlbumsModel[]> {
 
     @Override
     public void onFailure(Call call, Throwable t) {
+        // TG: Yucky TODO comments :)
         //TODO implement the failure callback
     }
 }

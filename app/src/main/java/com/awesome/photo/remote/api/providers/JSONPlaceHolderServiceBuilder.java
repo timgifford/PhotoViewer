@@ -13,6 +13,12 @@ public class JSONPlaceHolderServiceBuilder {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(CONVERTER_FACTORY)
                 .build();
+//        TG: Why not chain create(..) after build() and return it?
+//        return new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(CONVERTER_FACTORY)
+//                .build()
+//                .crete(JSONPlaceholderService.class);
         return retrofit.create(JSONPlaceholderService.class);
     }
 }

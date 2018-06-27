@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 
 public class AlbumTest {
     Album classUnderTest;
+    // TG: I wouldn't mock albumsList. Just make it an empty list.
     @Mock
     List<AlbumsModel> albumsList;
     int baseId = 1;
@@ -30,10 +31,14 @@ public class AlbumTest {
 
     @Test
     public void setPhotos() {
+        // TG: pass in a realy list, because mocks don't need to be used
+        // to test 'state' based methods.
         List<AlbumsModel> expected = Mockito.mock(List.class);
         classUnderTest.setPhotos(expected);
         assertEquals(expected, classUnderTest.getPhotos());
     }
+
+    // TG: Not much value in testing get/sets unless they have logic
 
     @Test
     public void getId() {

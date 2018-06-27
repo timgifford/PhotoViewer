@@ -49,6 +49,9 @@ public class JSONPlaceholderRepositoryTest {
 
 
         classUnderTest.retrieve();
+        // TG: I only see this used in @Mock declaration. Does this
+        // test anything other than the Mockito.initMocks call? If so, we don't
+        // need to test that since it's not our code.
         assertNotNull(albumsLiveData);
         Mockito.verify(serviceMock).getAlbums();
         Mockito.verify(callMock).enqueue(callbackMock);
@@ -60,6 +63,7 @@ public class JSONPlaceholderRepositoryTest {
 
 
         classUnderTest.retrieve(id);
+        // TG: needed?
         assertNotNull(albumsLiveData);
         Mockito.verify(serviceMock).getAlbum(id);
         Mockito.verify(callMock).enqueue(callbackMock);

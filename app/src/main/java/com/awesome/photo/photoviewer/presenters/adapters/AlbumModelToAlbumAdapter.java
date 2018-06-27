@@ -23,6 +23,8 @@ public class AlbumModelToAlbumAdapter {
                 albumMap.get(x.getAlbumId()).getPhotos().add(x);
             });
         }
+        // TG: Always return an empty list not a null for collections.
+        // Otherwise you'll have null checks everywhere in the code.
     return albumMap.values().size() == 0 ? null : albumMap.values();
     }
 }

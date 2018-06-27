@@ -1,6 +1,11 @@
 *.iml
 .gradle
 /local.properties
+
+# TG: the .idea/ folder is still tracked for some reason.
+# I was going to ignore it, but it looks like it's already ignored.
+# We shouldn't have to ignore individual files since the entire folder
+# should be ignored.
 .idea/
 /.idea/libraries
 /.idea/modules.xml
