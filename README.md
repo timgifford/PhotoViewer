@@ -11,4 +11,4 @@ This totally amazing app is super simple to get going
 
 # Ooo La La the Good Stuff
 
-![Alt Text](http://www.giphy.com/gifs/37tughYDlu6e7OtIIh)
+![Alt Text](https://media.giphy.com/media/37tughYDlu6e7OtIIh/giphy.gif)
